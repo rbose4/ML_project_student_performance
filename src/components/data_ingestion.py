@@ -8,6 +8,7 @@ from pathlib import Path
 
 from src.exception import CustomException
 from src.logger import logging
+from src.components.data_transformation import DataTransformation, DataTransformationConfig
 
 
 ARTIFACTS_DIR = 'artifacts'
@@ -56,8 +57,8 @@ if __name__ =="__main__":
     train_data, test_data = obj.initiate_data_ingestion()
     print("Training data path", train_data)
 
-#     data_transformation = DataTransformation()
-#     train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_path=train_data, test_path=test_data)
+    data_transformation = DataTransformation()
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_path=train_data, test_path=test_data)
 #     model_trainer = Model_Trainer()
 #     score, model_name = model_trainer.initiate_model_trainer(train_arr, test_arr)
 #     print(f"Best model: {model_name}, R Sqaured value: {score} ")
