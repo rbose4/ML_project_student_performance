@@ -1,9 +1,14 @@
-# Set a non-root user (important for security)
-FROM python:3.8-slim-buster
-COPY . /app
+FROM python:3.11.2-slim-buster
+
 WORKDIR /app
 
-RUN apt update -y && apt install awscli -y
+# Install system dependencies (including awscli)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends awscli && \
+    rm -rf /var/lib/apt/lists/*  # Clean up apt cache
 
-RUN pip install -r requirements.txt
+COPY . /app
+
+RUN pip install --no-cache-dir -r requirements.txt
+
 CMD ["python3", "app.py"]
